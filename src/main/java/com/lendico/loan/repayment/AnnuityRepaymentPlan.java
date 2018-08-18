@@ -76,7 +76,7 @@ public class AnnuityRepaymentPlan implements RepaymentPlan {
 
     private String getPaymentDate(String startDate, int paymentNumber) {
         LocalDate date = LocalDate.parse(startDate, formatter);
-        return date.plusMonths(paymentNumber - 1).format(formatter);
+        return date.plusMonths((long) paymentNumber - 1).format(formatter);
     }
 
 }
