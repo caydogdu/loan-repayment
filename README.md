@@ -17,7 +17,7 @@ RepaymentPlan : to calculate repayment plan
 
 If you need more loan and repayment plan implementations you can use these interfaces.
 
-Here is sample use
+Here is a example
 
 LoanRequestDTO loanRequestDTO = new LoanRequestDTO();
 loanRequestDTO.setLoanAmount(new BigDecimal(5000));
