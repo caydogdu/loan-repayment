@@ -34,11 +34,10 @@ public class AnnuityLoan implements Loan {
         BigDecimal borrowerPaymentAmount = BigDecimal.valueOf(rate).multiply(loanRequestDTO.getLoanAmount()).divide(
                 BigDecimal.valueOf((1 - Math.pow(1 + rate, -(loanRequestDTO.getDuration())))), 2, RoundingMode.HALF_UP);
 
-        LoanDetailDTO loanDetailDTO =
-                new LoanDetailDTO(loanRequestDTO.getLoanAmount(), loanRequestDTO.getNominalRate(), "");
+        LoanDetailDTO loanDetailDTO = new LoanDetailDTO(loanRequestDTO.getLoanAmount(), loanRequestDTO.getNominalRate(),
+                loanRequestDTO.getStartDate());
         loanDetailDTO.setBorrowerPaymentAmount(borrowerPaymentAmount);
         loanDetailDTO.setDuration(loanRequestDTO.getDuration());
-        loanDetailDTO.setStartDate(loanRequestDTO.getStartDate());
         LOGGER.info(loanDetailDTO.toString());
 
         return loanDetailDTO;
