@@ -19,6 +19,13 @@ public class ResponseException extends Exception {
 
     private final String developerMessage;
 
+    public ResponseException(String exceptionCode, String exceptionDescription) {
+        super();
+        this.exceptionCode = exceptionCode;
+        this.exceptionDescription = exceptionDescription;
+        this.developerMessage = null;
+    }
+
     public ResponseException(String exceptionCode, String exceptionDescription, String developerMessage) {
         super();
         this.exceptionCode = exceptionCode;

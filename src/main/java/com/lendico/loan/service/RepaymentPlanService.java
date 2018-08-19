@@ -2,6 +2,7 @@ package com.lendico.loan.service;
 
 import com.lendico.loan.dto.LoanRequestDTO;
 import com.lendico.loan.dto.RepaymentPlanDTO;
+import com.lendico.loan.exception.ResponseException;
 
 /**
  *
@@ -11,5 +12,5 @@ import com.lendico.loan.dto.RepaymentPlanDTO;
  */
 public interface RepaymentPlanService {
 
-    public RepaymentPlanDTO calculateRepaymentPlan(LoanRequestDTO loanRequest);
+    public RepaymentPlanDTO calculateRepaymentPlan(LoanRequestDTO loanRequest) throws ResponseException;
 }

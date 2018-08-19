@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.lendico.loan.dto.LoanDetailDTO;
 import com.lendico.loan.dto.PaymentDetailDTO;
 import com.lendico.loan.dto.RepaymentPlanDTO;
+import com.lendico.loan.exception.ResponseException;
 
 public class AnnuityRepaymentPlan implements RepaymentPlan {
 
@@ -25,7 +26,7 @@ public class AnnuityRepaymentPlan implements RepaymentPlan {
     }
 
     @Override
-    public RepaymentPlanDTO calculate() {
+    public RepaymentPlanDTO calculate() throws ResponseException {
 
         LoanDetailDTO loanDetail = loan.calculate();
 
@@ -58,7 +59,7 @@ public class AnnuityRepaymentPlan implements RepaymentPlan {
     }
 
     private PaymentDetailDTO getMonthlyPaymentDetail(LoanDetailDTO loanDetail, int paymentNumber,
-            BigDecimal initialOutstandingPrincipal) {
+            BigDecimal initialOutstandingPrincipal) throws ResponseException {
         // calculating interest amount for each month
         BigDecimal interest = BigDecimal.valueOf(loanDetail.getNominalRate() * 30).multiply(initialOutstandingPrincipal)
                 .divide(BigDecimal.valueOf(360), 2, RoundingMode.HALF_UP)
@@ -74,8 +75,16 @@ public class AnnuityRepaymentPlan implements RepaymentPlan {
         return paymentDetail;
     }
 
-    private String getPaymentDate(String startDate, int paymentNumber) {
-        LocalDate date = LocalDate.parse(startDate, formatter);
+    private String getPaymentDate(String startDate, int paymentNumber) throws ResponseException {
+        if (startDate == null) {
+            return null;
+        }
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(startDate, formatter);
+        } catch (Exception e) {
+            throw new ResponseException("ERR-02", "Date format must be dd.MM.yyyy");
+        }
         return date.plusMonths((long) paymentNumber - 1).format(formatter);
     }
 

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import com.lendico.loan.dto.LoanDetailDTO;
 import com.lendico.loan.dto.LoanRequestDTO;
+import com.lendico.loan.exception.ResponseException;
 
 public class AnnuityLoan implements Loan {
 
@@ -18,7 +19,16 @@ public class AnnuityLoan implements Loan {
     }
 
     @Override
-    public LoanDetailDTO calculate() {
+    public LoanDetailDTO calculate() throws ResponseException {
+
+        if (loanRequestDTO.getNominalRate() == 0) {
+            throw new ResponseException("ERR-01", "Nominal rate can not be zero");
+        }
+
+        if (loanRequestDTO.getDuration() == 0) {
+            throw new ResponseException("ERR-03", "Duration can not be zero");
+        }
+
         // calculating borrower payment amount
         double rate = loanRequestDTO.getNominalRate() / (12 * 100);
         BigDecimal borrowerPaymentAmount = BigDecimal.valueOf(rate).multiply(loanRequestDTO.getLoanAmount()).divide(
