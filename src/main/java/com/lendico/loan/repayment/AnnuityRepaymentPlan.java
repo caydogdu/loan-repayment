@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lendico.loan.dto.LoanDetailDTO;
@@ -48,7 +49,9 @@ public class AnnuityRepaymentPlan implements RepaymentPlan {
                         paymentDetail.getPrincipal().add(paymentDetail.getRemainingOutstandingPrincipal()));
                 paymentDetail.setRemainingOutstandingPrincipal(BigDecimal.valueOf(0));
             }
-            LOGGER.info(paymentDetail.toString());
+            if (LOGGER.isLoggable(Level.INFO)) {
+                LOGGER.log(Level.INFO, paymentDetail.toString());
+            }
             plan.add(paymentDetail);
 
         }

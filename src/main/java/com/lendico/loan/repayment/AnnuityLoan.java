@@ -2,6 +2,7 @@ package com.lendico.loan.repayment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lendico.loan.dto.LoanDetailDTO;
@@ -38,7 +39,10 @@ public class AnnuityLoan implements Loan {
                 loanRequestDTO.getStartDate());
         loanDetailDTO.setBorrowerPaymentAmount(borrowerPaymentAmount);
         loanDetailDTO.setDuration(loanRequestDTO.getDuration());
-        LOGGER.info(loanDetailDTO.toString());
+
+        if (LOGGER.isLoggable(Level.INFO)) {
+            LOGGER.log(Level.INFO, loanDetailDTO.toString());
+        }
 
         return loanDetailDTO;
     }
