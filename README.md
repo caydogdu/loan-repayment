@@ -11,8 +11,8 @@ These are the main ability of project
 This project was developed with spring boot. Java 8 is required. No database was used.
 
 There are 2 interfaces to calculate loan repayment plan
-Loan : to calculate loan
-RepaymentPlan : to calculate repayment plan
+**Loan :** to calculate loan
+**RepaymentPlan :** to calculate repayment plan
 
 If you need more loan and repayment plan implementations you can use these interfaces.
 
@@ -40,9 +40,8 @@ To generate a loan repayment plan
 	"startDate": "01.01.2018"
     }
 
-------------------------------------------------------------------
 
-Run options and deployment
+## Run options and deployment
 
 This project is a microservice. So you can easily run it.
 
@@ -53,7 +52,7 @@ If you use the Spring Boot Maven or Gradle plugins first create an executable ja
     
 It is also possible to run a packaged application with remote debugging support enabled. This allows you to attach a debugger to your packaged application:
 
-You can also run it with executing the main class (com.lendico.loan.Application)
+You can also run it with executing the main class (**com.lendico.loan.Application**)
 
 2- Using the Maven plugin
 The Spring Boot Maven plugin includes a run goal which can be used to quickly compile and run your application. Applications run in an exploded form just like in your IDE.
