@@ -11,8 +11,9 @@ These are the main ability of project
 This project was developed with spring boot. Java 8 is required. No database was used.
 
 There are 2 interfaces to calculate loan repayment plan
-**Loan :** to calculate loan
-**RepaymentPlan :** to calculate repayment plan
+
+    Loan : to calculate loan
+    RepaymentPlan : to calculate repayment plan
 
 If you need more loan and repayment plan implementations you can use these interfaces.
 
